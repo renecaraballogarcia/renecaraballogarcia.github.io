@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti - Una Carta Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #f8f8f8;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            height: 1000vh; /* Extra space for scrolling */
+            perspective: 1000px;
+        }
+
+        .tunnel-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            z-index: -1;
+        }
+
+        .tunnel {
+            position: relative;
+            width: 100vmin;
+            height: 100vmin;
+            transform-style: preserve-3d;
+            animation: rotateTunnel 30s linear infinite;
+        }
+
+        @keyframes rotateTunnel {
+            0% {
+                transform: rotateZ(0deg);
+            }
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+
+        .tunnel-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 2px solid;
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%) rotateX(90deg);
+        }
+
+        .ring-1 { width: 10vmin; height: 10vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-400px); border-color: #ff006c; box-shadow: 0 0 15px #ff006c, inset 0 0 15px #ff006c; }
+        .ring-2 { width: 20vmin; height: 20vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-350px); border-color: #ff4893; box-shadow: 0 0 15px #ff4893, inset 0 0 15px #ff4893; }
+        .ring-3 { width: 30vmin; height: 30vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-300px); border-color: #ff71ac; box-shadow: 0 0 15px #ff71ac, inset 0 0 15px #ff71ac; }
+        .ring-4 { width: 40vmin; height: 40vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-250px); border-color: #ff9cc8; box-shadow: 0 0 15px #ff9cc8, inset 0 0 15px #ff9cc8; }
+        .ring-5 { width: 50vmin; height: 50vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-200px); border-color: #ffb8d9; box-shadow: 0 0 15px #ffb8d9, inset 0 0 15px #ffb8d9; }
+        .ring-6 { width: 60vmin; height: 60vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-150px); border-color: #ffd1e6; box-shadow: 0 0 15px #ffd1e6, inset 0 0 15px #ffd1e6; }
+        .ring-7 { width: 70vmin; height: 70vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-100px); border-color: #ffe4f0; box-shadow: 0 0 15px #ffe4f0, inset 0 0 15px #ffe4f0; }
+        .ring-8 { width: 80vmin; height: 80vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-50px); border-color: #fff0f7; box-shadow: 0 0 15px #fff0f7, inset 0 0 15px #fff0f7; }
+        .ring-9 { width: 90vmin; height: 90vmin; transform: translate(-50%, -50%) rotateX(90deg) translateZ(0px); border-color: #ffffff; box-shadow: 0 0 15px #ffffff, inset 0 0 15px #ffffff; }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: #ff3366;
+            text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            animation: neonPulse 2s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+            }
+            100% {
+                text-shadow: 0 0 15px #ff3366, 0 0 25px #ff3366, 0 0 35px #ff3366, 0 0 45px #ff3366;
+            }
+        }
+
+        .message-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .message {
+            opacity: 0;
+            transform: translateZ(-1000px) scale(0.1);
+            transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 30px;
+            background-color: rgba(10, 10, 10, 0.7);
+            border: 2px solid;
+            border-radius: 10px;
+            position: relative;
+            max-width: 80%;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .message:nth-child(3n+1) {
+            border-color: #ff3366;
+            color: #ff3366;
+        }
+
+        .message:nth-child(3n+2) {
+            border-color: #9900cc;
+            color: #9900cc;
+        }
+
+        .message:nth-child(3n+3) {
+            border-color: #00ccff;
+            color: #00ccff;
+        }
+
+        .message.visible {
+            opacity: 1;
+            transform: translateZ(0) scale(1);
+        }
+
+        .message p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            text-align: center;
+            font-weight: 300;
+            text-shadow: 0 0 5px currentColor;
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: currentColor;
+            transform: rotate(45deg);
+            animation: pulse 2s infinite;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        .heart:before, .heart:after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: currentColor;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -15px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: rotate(45deg) scale(1);
+            }
+            50% {
+                transform: rotate(45deg) scale(1.3);
+            }
+            100% {
+                transform: rotate(45deg) scale(1);
+            }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+            transform: rotate(45deg);
+            animation: float 15s linear infinite;
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+
+        .floating-heart:before, .floating-heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: currentColor;
+            border-radius: 50%;
+        }
+
+        .floating-heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .floating-heart:after {
+            top: 0;
+            left: -10px;
+        }
+
+        .floating-heart:nth-child(4n+1) {
+            background-color: #ff3366;
+            color: #ff3366;
+        }
+
+        .floating-heart:nth-child(4n+1):before, .floating-heart:nth-child(4n+1):after {
+            background-color: #ff3366;
+        }
+
+        .floating-heart:nth-child(4n+2) {
+            background-color: #9900cc;
+            color: #9900cc;
+        }
+
+        .floating-heart:nth-child(4n+2):before, .floating-heart:nth-child(4n+2):after {
+            background-color: #9900cc;
+        }
+
+        .floating-heart:nth-child(4n+3) {
+            background-color: #00ccff;
+            color: #00ccff;
+        }
+
+        .floating-heart:nth-child(4n+3):before, .floating-heart:nth-child(4n+3):after {
+            background-color: #00ccff;
+        }
+
+        .floating-heart:nth-child(4n+4) {
+            background-color: #ff00ff;
+            color: #ff00ff;
+        }
+
+        .floating-heart:nth-child(4n+4):before, .floating-heart:nth-child(4n+4):after {
+            background-color: #ff00ff;
+        }
+
+        @keyframes float {
+            0% {
+                transform: rotate(45deg) translateY(0) translateX(0) scale(0.2);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: rotate(45deg) translateY(-100vh) translateX(100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            color: #ff3366;
+            text-shadow: 0 0 10px #ff3366;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="tunnel-container">
+        <div class="tunnel">
+            <div class="tunnel-ring ring-1"></div>
+            <div class="tunnel-ring ring-2"></div>
+            <div class="tunnel-ring ring-3"></div>
+            <div class="tunnel-ring ring-4"></div>
+            <div class="tunnel-ring ring-5"></div>
+            <div class="tunnel-ring ring-6"></div>
+            <div class="tunnel-ring ring-7"></div>
+            <div class="tunnel-ring ring-8"></div>
+            <div class="tunnel-ring ring-9"></div>
+        </div>
+    </div>
+    
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Para Ti</h1>
+            <div class="heart" style="position: relative; margin: 30px auto; color: #ff3366;"></div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message1">
+                <p>Cada día que pasa, mi amor por ti crece más y más, como una rosa negra que florece en la oscuridad de mi corazón.</p>
+                <div class="heart" style="top: -15px; right: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message2">
+                <p>Eres la luz que ilumina mi oscuridad, el latido que da vida a mi existencia sombría.</p>
+                <div class="heart" style="bottom: -15px; left: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message3">
+                <p>En este mundo de sombras, encontré en ti la más hermosa contradicción: dulzura y pasión, ternura y fuego.</p>
+                <div class="heart" style="top: -15px; left: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message4">
+                <p>Como la luna que abraza la noche, así te abrazo yo en mis pensamientos, con devoción eterna.</p>
+                <div class="heart" style="bottom: -15px; right: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message5">
+                <p>Mi amor por ti es como un poema gótico: intenso, profundo, eterno y hermosamente oscuro.</p>
+                <div class="heart" style="top: 50%; right: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message6">
+                <p>Tus ojos son el abismo donde me pierdo cada noche, un universo infinito donde deseo habitar eternamente.</p>
+                <div class="heart" style="bottom: -15px; left: 50%;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message7">
+                <p>Entre sombras y luces, entre suspiros y silencios, mi corazón te busca, te encuentra y se entrega a ti.</p>
+                <div class="heart" style="top: -15px; right: 30%;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message8">
+                <p>Como la tinta negra sobre papel blanco, así se escribe nuestra historia: contrastante, intensa y eterna.</p>
+                <div class="heart" style="bottom: 30%; left: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message9">
+                <p>Eres el verso más hermoso en el poema de mi vida, la melodía que resuena en mi alma oscura.</p>
+                <div class="heart" style="top: 20%; right: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message10">
+                <p>En cada latido de mi corazón susurro tu nombre, en cada suspiro libero mi amor por ti.</p>
+                <div class="heart" style="bottom: -15px; right: 40%;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message11">
+                <p>Como la noche espera a las estrellas, así te espero yo: con paciencia, con anhelo, con devoción.</p>
+                <div class="heart" style="top: -15px; left: 40%;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message12">
+                <p>Eres el sueño que no quiero despertar, la fantasía que se hizo realidad en mi mundo de sombras.</p>
+                <div class="heart" style="top: 40%; left: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message13">
+                <p>Mi amor por ti trasciende el tiempo y el espacio, es eterno como la noche, infinito como el universo.</p>
+                <div class="heart" style="bottom: 40%; right: -15px;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message14">
+                <p>En el jardín de mi alma, tu recuerdo florece como una rosa negra: hermosa, única y eterna.</p>
+                <div class="heart" style="top: -15px; right: 50%;"></div>
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message" id="message15">
+                <p>Eres el eclipse que oscurece mi razón y enciende mi pasión, la dualidad perfecta que me cautiva.</p>
+                <div class="heart" style="bottom: -15px; left: 30%;"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Con todo mi amor y oscuridad...</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        const floatingHeartsContainer = document.getElementById('floatingHearts');
+        const numberOfHearts = 40;
+        
+        for (let i = 0; i < numberOfHearts; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            // Random position
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            
+            // Random size
+            const size = Math.random() * 15 + 10;
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            
+            // Random animation duration and delay
+            const duration = Math.random() * 10 + 10;
+            const delay = Math.random() * 10;
+            heart.style.animation = `float ${duration}s linear ${delay}s infinite`;
+            
+            floatingHeartsContainer.appendChild(heart);
+        }
+        
+        // Scroll animation for messages
+        const messages = document.querySelectorAll('.message');
+        
+        function checkScroll() {
+            messages.forEach(message => {
+                const messageContainer = message.parentElement;
+                const containerTop = messageContainer.getBoundingClientRect().top;
+                const containerBottom = messageContainer.getBoundingClientRect().bottom;
+                
+                if (containerTop < window.innerHeight * 0.8 && containerBottom > 0) {
+                    message.classList.add('visible');
+                } else {
+                    message.classList.remove('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('resize', checkScroll);
+        
+        // Initial check
+        checkScroll();
+    </script>
+</body>
+</html>
