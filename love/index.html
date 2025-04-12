@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti, Mi Amor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap">
+</head>
+<body>
+    <div class="floating-hearts"></div>
+    
+    <header>
+        <div class="hero">
+            <h1 class="title">Para Mi Amor</h1>
+            <p class="subtitle">Cada día te quiero más</p>
+        </div>
+    </header>
+
+    <section class="memories">
+        <h2>Nuestros Momentos</h2>
+        <div class="gallery">
+            <div class="photo-card">
+                <div class="photo" style="background-image: url('firstday.jpg')"></div>
+                <p>Nuestro primer día juntos - 4/09/2020</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo" style="background-image: url('1.jpg')"></div>
+                <p>Aquella tarde especial - 16/04/2023</p>
+            </div>
+            <div class="photo-card">
+                <div class="photo" style="background-image: url('forever.jpg'); background-size:fit;background-position: center;"></div>
+                <p>Proximamente mi amor</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="love-letter">
+        <div class="paper">
+            <h2>Mi Carta de Amor</h2>
+            <p>Querida,</p>
+            <p>Desde que entraste en mi vida, todo ha cambiado. Cada mañana despierto con una sonrisa pensando en ti, y cada noche me duermo soñando con nuestro futuro juntos.</p>
+            <p>Eres mi inspiración, mi alegría y mi paz. Gracias por compartir tu vida conmigo.</p>
+            <p class="signature">Con todo mi amor,<br>Tu Amor</p>
+        </div>
+    </section>
+
+    <section class="reasons">
+        <h2>Razones Por Las Que Te Amo</h2>
+        <div class="reasons-container">
+            <div class="reason">
+                <div class="heart-icon">❤️</div>
+                <p>Tu sonrisa ilumina mi mundo</p>
+            </div>
+            <div class="reason">
+                <div class="heart-icon">❤️</div>
+                <p>Tu forma de ver la vida me inspira</p>
+            </div>
+            <div class="reason">
+                <div class="heart-icon">❤️</div>
+                <p>Contigo, hasta los momentos simples son especiales</p>
+            </div>
+            <div class="reason">
+                <div class="heart-icon">❤️</div>
+                <p>Eres mi mejor amiga y mi compañera</p>
+            </div>
+            <div class="reason">
+                <div class="heart-icon">❤️</div>
+                <p>Tu corazón es el más hermoso que conozco</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="special-moment">
+        <div class="moment-content">
+            <h2>Nuestro Momento Especial</h2>
+            <div class="countdown">
+                <p>Celebrando:</p>
+                <div id="countdown-timer">
+                    <div class="time-unit">
+                        <span id="days">00</span>
+                        <span class="label">Días</span>
+                    </div>
+                    <div class="time-unit">
+                        <span id="hours">00</span>
+                        <span class="label">Horas</span>
+                    </div>
+                    <div class="time-unit">
+                        <span id="minutes">00</span>
+                        <span class="label">Minutos</span>
+                    </div>
+                    <div class="time-unit">
+                        <span id="seconds">00</span>
+                        <span class="label">Segundos</span>
+                    </div>
+                </div>
+                <p class="anniversary-label">juntos</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Hecho con ❤️ para ti</p>
+        
+        <!-- Reproductor de Spotify (oculto inicialmente si lo prefieres) -->
+        <iframe style="border-radius:12px; margin-bottom: 20px;" 
+                src="https://open.spotify.com/embed/track/07squf0xpI7hHUwZ4hezKP?utm_source=generator" 
+                width="100%" 
+                height="352" 
+                frameborder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+        </iframe>
+    
+        <!-- Tu botón de audio personalizado -->
+        
+    </footer>
+    
+    <script>
+        // Script para controlar el botón de audio personalizado
+        const playButton = document.getElementById('play-music');
+        const audio = document.getElementById('love-song');
+        
+        playButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playButton.textContent = '❚❚ Pausar';
+            } else {
+                audio.pause();
+                playButton.textContent = '♫ Reproducir Nuestra Canción';
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
